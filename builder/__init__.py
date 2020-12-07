@@ -9,6 +9,7 @@
 :class:`Builder`
 """
 import yaml
+import json
 from . import helpers
 
 __author__ = 'Joel E Carlson'
@@ -49,4 +50,26 @@ class Builder():
         """
         to_yaml
         """
-        return yaml.dump(self)
+        content = {'ip': self.ip,
+                   'cidr': self.cidr,
+                   'netmask': self.netmask,
+                   'gateway': self.gateway,
+                   'os': self.os,
+                   'cpu': self.cpu,
+                   'mem': self.mem,
+                   }
+        return yaml.dump(content)
+
+    def to_json(self):
+        """
+        to_json
+        """
+        content = {'ip': self.ip,
+                   'cidr': self.cidr,
+                   'netmask': self.netmask,
+                   'gateway': self.gateway,
+                   'os': self.os,
+                   'cpu': self.cpu,
+                   'mem': self.mem,
+                   }
+        return json.dumps(content).encode('utf-8')

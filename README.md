@@ -21,7 +21,6 @@ optional arguments:
 ```
 $ python3 ./example.py -c 2 -m 4 -o Windows2019 
 Running builder...
-!!python/object:builder.Builder
 cidr: 8
 cpu: '2'
 gateway: 127.0.0.1
