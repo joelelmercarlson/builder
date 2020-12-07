@@ -108,14 +108,14 @@ def get_host_ip(hostname=LOCALHOST):
     return ip_address
 
 
-def get_netmask(key):
+def get_netmask(lookup):
     """
     get_netmask
 
     :param cidr: str
     :returns: netmask
     """
-    __key = int(key)
+    key = int(lookup)
     netmasks = {1: '128.0.0.0',
                 2: '192.0.0.0',
                 3: '224.0.0.0',
@@ -149,7 +149,7 @@ def get_netmask(key):
                 31: '255.255.255.254',
                 32: '255.255.255.255',
                 }
-    return netmasks[__key]
+    return netmasks[key]
 
 
 def get_network(ipaddr, netmask):
