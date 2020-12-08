@@ -153,7 +153,7 @@ def get_network(ipaddr, netmask):
     """
     get_network
 
-    :param ip: str
+    :param ipaddr: str
     :param netmask: str
     :returns: network
     """
