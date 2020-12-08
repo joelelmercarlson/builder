@@ -1,6 +1,7 @@
 # -*- coding: utf-8 -*-
+
 """
-helper functions for NetworkData
+helper functions for Builder
 """
 import os
 import socket
@@ -9,12 +10,10 @@ __author__ = 'Joel E Carlson'
 __credits__ = ['joel.elmer.carlson@gmail.com']
 __email__ = __credits__[0]
 
-# GLOBALS
 LOOP = '127.0.0.1'
 NET = '127.0.0.0'
 MASK = '255.0.0.0'
 LOCALHOST = 'localhost.localdomain'
-
 
 def _range(*args, **kwargs):
     """
@@ -43,9 +42,7 @@ def bytes_to_bits():
         lookup.append(''.join(bits))
     return lookup
 
-
 BYTES_TO_BITS = bytes_to_bits()
-
 
 def cidr(netmask=MASK):
     """
@@ -112,7 +109,7 @@ def get_netmask(lookup):
     """
     get_netmask
 
-    :param cidr: str
+    :param lookup: str
     :returns: netmask
     """
     key = int(lookup)

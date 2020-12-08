@@ -10,6 +10,7 @@
 """
 import yaml
 import json
+import re
 from . import helpers
 
 __author__ = 'Joel E Carlson'
@@ -22,18 +23,23 @@ class Builder():
     :returns: :class:`Builder`
     """
 
-    def __init__(self, ip, os, cpu, mem):
+    def __init__(self, ip, os, cpu, mem, disk, epg):
         """
         builder environment
         """
+        match = re.search('/', ip)
+        if not match:
+            raise Exception(f'ip={ip} not address/cidr notation.')
         self.ip = ip.split('/')[0]
-        self.cidr = int(ip.split('/')[1])
+        self.cidr = ip.split('/')[1]
         self.netmask = helpers.get_netmask(self.cidr)
         self.network = helpers.get_network(self.ip, self.netmask)
         self.gateway = helpers.get_gateway(self.network, self.netmask)
         self.os = os
-        self.cpu = cpu
-        self.mem = mem
+        self.cpu = str(cpu)
+        self.mem = str(mem)
+        self.disk = str(disk)
+        self.epg = str(epg)
 
     def __repr__(self):
         return (f'Builder({self.ip!r}, '
@@ -43,7 +49,9 @@ class Builder():
                 f'{self.gateway!r}, '
                 f'{self.os!r}, '
                 f'{self.cpu!r}, '
-                f'{self.mem!r}'
+                f'{self.mem!r}, '
+                f'{self.disk!r}, '
+                f'{self.epg!r}'
                 ')')
 
     def to_yaml(self):
@@ -57,6 +65,8 @@ class Builder():
                    'os': self.os,
                    'cpu': self.cpu,
                    'mem': self.mem,
+                   'disk': self.disk,
+                   'epg': self.epg,
                    }
         return yaml.dump(content)
 
@@ -71,5 +81,7 @@ class Builder():
                    'os': self.os,
                    'cpu': self.cpu,
                    'mem': self.mem,
+                   'disk': self.disk,
+                   'epg': self.epg,
                    }
         return json.dumps(content).encode('utf-8')
