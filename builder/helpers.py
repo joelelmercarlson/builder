@@ -52,7 +52,8 @@ def bits_to_octal(bits):
     :returns: str
 
     """
-    return BYTES_TO_BITS[bits]
+    key = int(bits)
+    return BYTES_TO_BITS[key]
 
 def cidr(netmask=MASK):
     """
