@@ -40,6 +40,7 @@ class Builder():
         self.mem = str(mem)
         self.disk = str(disk)
         self.epg = str(epg)
+        self.nm = helpers.bits_to_octal(self.cidr)
 
     def __repr__(self):
         return (f'Builder({self.ip!r}, '
@@ -67,6 +68,7 @@ class Builder():
                    'mem': self.mem,
                    'disk': self.disk,
                    'epg': self.epg,
+                   'nm': self.nm,
                    }
         return yaml.dump(content)
 

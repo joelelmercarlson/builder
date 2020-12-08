@@ -19,9 +19,9 @@ def _range(*args, **kwargs):
     """
     _range helper function
 
-    :param *args: (int)
-    :param **kwargs: (int)
-    :return: (list)
+    :param *args: int
+    :param **kwargs: int
+    :return: list
     """
     return list(range(*args, **kwargs))
 
@@ -30,7 +30,7 @@ def bytes_to_bits():
     """
     bytes_to_bits
 
-    :return: (str)
+    :return: str
     """
     lookup = []
     bits_per_byte = _range(7, -1, -1)
@@ -44,12 +44,22 @@ def bytes_to_bits():
 
 BYTES_TO_BITS = bytes_to_bits()
 
+def bits_to_octal(bits):
+    """
+    bits_to_octal
+
+    :param bits: int
+    :returns: str
+
+    """
+    return BYTES_TO_BITS[bits]
+
 def cidr(netmask=MASK):
     """
     calculate cidr
 
-    :param netmask: (str)
-    :return: cidr (int)
+    :param netmask: str
+    :return: cidr int
     """
     numbits = 0
     for i in netmask.split('.'):
@@ -63,8 +73,8 @@ def get_domain(hostname=LOCALHOST):
     """
     get_domain
 
-    :param hostname: (str)
-    :return: domainname (str)
+    :param hostname: str
+    :return: domainname str
     """
     if hostname in ['localhost', 'localhost.localdomain']:
         return 'localdomain'
@@ -92,8 +102,8 @@ def get_host_ip(hostname=LOCALHOST):
     """
     get_host_ip
 
-    :param hostname: (str)
-    :return: ip (str)
+    :param hostname: str
+    :return: ip str
     """
     ip_address = LOOP
     if hostname in ['localhost', 'localhost.localdomain']:
@@ -169,8 +179,8 @@ def get_short_name(hostname=LOCALHOST):
     """
     get_short_name
 
-    :param hostname: (str)
-    :return: short_name (str)
+    :param hostname: str
+    :return: short_name str
     """
     if hostname in ['localhost', 'localhost.localdomain']:
         return 'localhost'
@@ -181,10 +191,10 @@ def int_to_words(int_val, word_size, num_words):
     """
     int_to_words
 
-    :param int_val: (int)
-    :param word_size: (int)
-    :param num_words: (int)
-    :return: words (str)
+    :param int_val: int
+    :param word_size: int
+    :param num_words: int
+    :return: words str
     """
     max_int = 2 ** (num_words * word_size) - 1
     max_word = 2 ** word_size - 1
@@ -202,11 +212,11 @@ def int_to_bits(int_val, word_size, num_words, word_sep=''):
     """
     int_to_bits
 
-    :param int_val: (int)
-    :param word_size: (int)
-    :param num_words: (int)
-    :param word_sep: (str)
-    :return: bits (str)
+    :param int_val: int
+    :param word_size: int
+    :param num_words: int
+    :param word_sep: str
+    :return: bits str
     """
     bit_words = []
     for word in int_to_words(int_val, word_size, num_words):
